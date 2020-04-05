@@ -31,17 +31,13 @@
 		<property name="show_sql">true</property>
 
 		<!-- Criação das tabelas -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">validate</property>
 		
 		<mapping class="br.com.vendas.domain.Fornecedor" />
 		<mapping class="br.com.vendas.domain.Funcionario" />
 		<mapping class="br.com.vendas.domain.Produto" />
 		<mapping class="br.com.vendas.domain.Vendas" />
 		<mapping class="br.com.vendas.domain.Item" />
-		
-		
-		
-
 		
 
 	</session-factory>

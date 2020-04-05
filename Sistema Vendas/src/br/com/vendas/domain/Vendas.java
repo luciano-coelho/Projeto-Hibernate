@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +20,13 @@ import javax.persistence.TemporalType;
 /*Criar Tabela Produtos*/
 @Entity
 @Table(name="tb_Vendas")
+
+//Método para listar
+@NamedQueries({
+@NamedQuery(name = "Vendas.listar", query = "SELECT vendas FROM Vendas vendas" ),
+//Método para Buscar
+@NamedQuery(name = "Vendas.buscarPorCodigo", query = "SELECT vendas FROM Vendas vendas WHERE vendas.codigo = :codigo" )
+})//Fechamento NamedQuery
 
 public class Vendas {
 	
@@ -83,6 +92,13 @@ public class Vendas {
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Vendas [codigo=" + codigo + ", horario=" + horario + ", valor_total=" + valor_total + ", funcionario="
+				+ funcionario + "]";
 	}
 	
 	

@@ -5,11 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /*Criar Tabela Fornecedores*/
 @Entity
 @Table(name="tb_fornecedores")
+
+//Método para listar
+@NamedQueries({
+@NamedQuery(name = "Fornecedor.listar", query = "SELECT fornecedor FROM Fornecedor fornecedor" ),
+//Método para Buscar
+@NamedQuery(name = "Fornecedor.buscarPorCodigo", query = "SELECT fornecedor FROM Fornecedor fornecedor WHERE fornecedor.codigo = :codigo" )
+})//Fechamento NamedQuery
 
 public class Fornecedor {
 	
@@ -39,6 +48,11 @@ public class Fornecedor {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	@Override
+	public String toString() {
+		return "Fornecedor [codigo=" + codigo + ", descricao=" + descricao + "]";
 	}
 
 	

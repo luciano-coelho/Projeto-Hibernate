@@ -12,11 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /*Criar Tabela Produtos*/
 @Entity
 @Table(name="tb_produtos")
+
+//Método para listar
+@NamedQueries({
+@NamedQuery(name = "Produto.listar", query = "SELECT produto FROM Produto produto" ),
+//Método para Buscar
+@NamedQuery(name = "Produto.buscarPorCodigo", query = "SELECT produto FROM Produto produto WHERE produto.codigo = :codigo" )
+})//Fechamento NamedQuery
 
 public class Produto {
 	
@@ -83,6 +92,14 @@ public class Produto {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+
+	@Override
+	public String toString() {
+		return "Produto [codigo=" + codigo + ", descricao=" + descricao + ", preco=" + preco + ", quantidade="
+				+ quantidade + ", fornecedor=" + fornecedor + "]";
+	}
+	
+	
 	
 	
 }

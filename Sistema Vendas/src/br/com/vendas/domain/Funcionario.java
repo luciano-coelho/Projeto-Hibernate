@@ -5,73 +5,82 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_funcionarios")
+@Table(name = "tb_funcionarios")
+
+//Método para listar
+@NamedQueries({ @NamedQuery(name = "Funcionario.listar", query = "SELECT funcionario FROM Funcionario funcionario"),
+//Método para Buscar
+		@NamedQuery(name = "Funcionario.buscarPorCodigo", query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.codigo = :codigo") }) // Fechamento
+																																							// NamedQuery
 
 public class Funcionario {
-	
-	
-		
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		@Id
-		@Column(name="fun_codigo")
-		private Long codigo;
-		
-		@Column(name="fun_nome", length=50, nullable=false)
-		private String nome;
-		
-		@Column(name="fun_cpf", length=14, nullable=false, unique = true)
-		private String cpf;
-		
-		@Column(name="fun_senha", length=50, nullable=false)
-		private String senha;
-		
-		@Column(name="fun_funcao", length=50, nullable=false)
-		private String funcao;
 
-		public Long getCodigo() {
-			return codigo;
-		}
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@Column(name = "fun_codigo")
+	private Long codigo;
 
-		public void setCodigo(Long codigo) {
-			this.codigo = codigo;
-		}
+	@Column(name = "fun_nome", length = 50, nullable = false)
+	private String nome;
 
-		public String getNome() {
-			return nome;
-		}
+	@Column(name = "fun_cpf", length = 14, nullable = false, unique = true)
+	private String cpf;
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+	@Column(name = "fun_senha", length = 50, nullable = false)
+	private String senha;
 
-		public String getCpf() {
-			return cpf;
-		}
+	@Column(name = "fun_funcao", length = 50, nullable = false)
+	private String funcao;
 
-		public void setCpf(String cpf) {
-			this.cpf = cpf;
-		}
+	public Long getCodigo() {
+		return codigo;
+	}
 
-		public String getSenha() {
-			return senha;
-		}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 
-		public void setSenha(String senha) {
-			this.senha = senha;
-		}
+	public String getNome() {
+		return nome;
+	}
 
-		public String getFuncao() {
-			return funcao;
-		}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-		public void setFuncao(String funcao) {
-			this.funcao = funcao;
-		}
-		
-		
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public String getFuncao() {
+		return funcao;
+	}
+
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
+	}
+
+	@Override
+	public String toString() {
+		return "Funcionario [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", senha=" + senha + ", funcao="
+				+ funcao + "]";
+	}
 
 }
-
